@@ -22,24 +22,7 @@ class Payload(BaseModel):
     message: str
 
 
-with open("value.json", "r") as file:
-    mock_value = file.read()
-
-ssmParameter = {
-    "Parameter": {
-        "Name": "string",
-        "Type": "String",
-        "Value": mock_value,
-        "Version": 123,
-        "Selector": "string",
-        "SourceResult": "string",
-        "LastModifiedDate": "10-10-01",
-        "ARN": "string",
-        "DataType": "string",
-    }
-}
-
-TIMEOUT = os.environ["TIMEOUT"]  # get from env/config or hardcode
+TIMEOUT = int(os.environ["TIMEOUT"])  # get from env/config or hardcode
 HMAC_KEY = os.environ["HMAC_KEY"]
 
 WEBHOOK_URL = "https://nyanify.zagoapps.com/webhook"
@@ -47,8 +30,9 @@ SIG_HEADER = "x-nyanify-signature"
 RECEIVER_ID = os.environ["RECEIVER_ID"]
 
 dynamodb = boto3.resource("dynamodb")
+ssm = boto3.client("ssm")
 
-table = dynamodb.Table("NyanwatchFailures")
+table = dynamodb.Table(os.environ["NYANWATCH_TABLE"])
 
 failures = table.scan()["Items"]
 
@@ -60,7 +44,7 @@ print(failed_services)
 
 
 async def main():
-    parameter = ssmParameter  # get actual ssm param from boto3
+    parameter = ssm.get_parameter(Name="/nyanwatch/endpoints")
     raw_value = parameter.get("Parameter").get("Value")
 
     if not raw_value:
