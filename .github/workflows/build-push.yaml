@@ -49,6 +49,8 @@ jobs:
           aws lambda update-function-code \
             --function-name "$FUNCTION_NAME" \
             --image-uri "$REGISTRY/$REPOSITORY:$ENVIR-$IMAGE_TAG" \
-            --publish
+            --publish \
+            --query 'LastUpdateStatus' \
+            --output text
           aws lambda wait function-updated \
             --function-name "$FUNCTION_NAME"
