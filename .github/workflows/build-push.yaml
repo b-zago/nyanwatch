@@ -7,6 +7,10 @@ on:
 env:
   REGION: eu-central-1
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   build-push:
     runs-on: ubuntu-latest
@@ -36,7 +40,7 @@ jobs:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           REPOSITORY: ${{ github.event.repository.name }}
           IMAGE_TAG: ${{ github.sha }}
-          ENVIR: ${{ if github.ref_name == 'main' && 'prod' || 'staging' }}
+          ENVIR: ${{ github.ref_name == 'main' && 'prod' || 'staging' }}
         with:
           push: true
           platforms: linux/amd64,linux/arm64
