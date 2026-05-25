@@ -1,0 +1,6 @@
+httpx
+boto3
+boto3-stubs[dynamodb]
+respx
+pytest
+pydantic

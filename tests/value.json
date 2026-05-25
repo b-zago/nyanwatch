@@ -1,0 +1,136 @@
+[
+  { "service": "api-gateway", "endpoint": "https://httpbin.org/status/200" },
+  { "service": "auth-service", "endpoint": "https://httpbin.org/get" },
+  {
+    "service": "user-service",
+    "endpoint": "https://jsonplaceholder.typicode.com/users/1"
+  },
+  {
+    "service": "post-service",
+    "endpoint": "https://jsonplaceholder.typicode.com/posts/1"
+  },
+  {
+    "service": "comment-service",
+    "endpoint": "https://jsonplaceholder.typicode.com/comments/1"
+  },
+  {
+    "service": "todo-service",
+    "endpoint": "https://jsonplaceholder.typicode.com/todos/1"
+  },
+  {
+    "service": "album-service",
+    "endpoint": "https://jsonplaceholder.typicode.com/albums/1"
+  },
+  {
+    "service": "photo-service",
+    "endpoint": "https://jsonplaceholder.typicode.com/photos/1"
+  },
+  { "service": "payment-service", "endpoint": "https://httpbin.org/uuid" },
+  { "service": "notification-service", "endpoint": "https://httpbin.org/ip" },
+  { "service": "email-service", "endpoint": "https://httpbin.org/headers" },
+  { "service": "order-service", "endpoint": "https://httpbin.org/user-agent" },
+  {
+    "service": "inventory-service",
+    "endpoint": "https://httpbin.org/encoding/utf8"
+  },
+  {
+    "service": "shipping-service",
+    "endpoint": "https://httpbin.org/base64/aGVhbHRoeQ=="
+  },
+  { "service": "search-service", "endpoint": "https://httpbin.org/bytes/10" },
+  { "service": "analytics-service", "endpoint": "https://catfact.ninja/fact" },
+  {
+    "service": "reporting-service",
+    "endpoint": "https://api.thecatapi.com/v1/images/search"
+  },
+  { "service": "geo-service", "endpoint": "https://ipapi.co/json/" },
+  {
+    "service": "currency-service",
+    "endpoint": "https://open.er-api.com/v6/latest/USD"
+  },
+  {
+    "service": "joke-service",
+    "endpoint": "https://official-joke-api.appspot.com/random_joke"
+  },
+  {
+    "service": "trivia-service",
+    "endpoint": "https://opentdb.com/api.php?amount=1"
+  },
+  { "service": "quote-service", "endpoint": "https://dummyjson.com/quotes/1" },
+  {
+    "service": "product-service",
+    "endpoint": "https://dummyjson.com/products/1"
+  },
+  { "service": "cart-service", "endpoint": "https://dummyjson.com/carts/1" },
+  {
+    "service": "recipe-service",
+    "endpoint": "https://dummyjson.com/recipes/1"
+  },
+  { "service": "blog-service", "endpoint": "https://dummyjson.com/posts/1" },
+  { "service": "tag-service", "endpoint": "https://dummyjson.com/posts/tags" },
+  {
+    "service": "dog-service",
+    "endpoint": "https://dog.ceo/api/breeds/image/random"
+  },
+  {
+    "service": "country-service",
+    "endpoint": "https://restcountries.com/v3.1/name/poland"
+  },
+  {
+    "service": "university-service",
+    "endpoint": "http://universities.hipolabs.com/search?country=US&limit=1"
+  },
+  {
+    "service": "number-service",
+    "endpoint": "http://numbersapi.com/42/math?json"
+  },
+  {
+    "service": "advice-service",
+    "endpoint": "https://api.adviceslip.com/advice"
+  },
+  {
+    "service": "bored-service",
+    "endpoint": "https://bored-api.appbrewery.com/random"
+  },
+  {
+    "service": "spacex-service",
+    "endpoint": "https://api.spacexdata.com/v4/launches/latest"
+  },
+  {
+    "service": "nasa-apod-service",
+    "endpoint": "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY"
+  },
+  {
+    "service": "pokemon-service",
+    "endpoint": "https://pokeapi.co/api/v2/pokemon/pikachu"
+  },
+  {
+    "service": "agify-service",
+    "endpoint": "https://api.agify.io/?name=michael"
+  },
+  {
+    "service": "genderize-service",
+    "endpoint": "https://api.genderize.io/?name=james"
+  },
+  {
+    "service": "nationalize-service",
+    "endpoint": "https://api.nationalize.io/?name=james"
+  },
+  { "service": "ip-service", "endpoint": "https://api.ipify.org?format=json" },
+  { "service": "uuid-service", "endpoint": "https://httpbin.org/uuid" },
+  { "service": "xml-service", "endpoint": "https://httpbin.org/xml" },
+  { "service": "html-service", "endpoint": "https://httpbin.org/html" },
+  { "service": "robots-service", "endpoint": "https://httpbin.org/robots.txt" },
+  { "service": "delay-service", "endpoint": "https://httpbin.org/delay/1" },
+  { "service": "cache-service", "endpoint": "https://httpbin.org/cache" },
+  { "service": "etag-service", "endpoint": "https://httpbin.org/etag/abc" },
+  { "service": "stream-service", "endpoint": "https://httpbin.org/stream/1" },
+  {
+    "service": "dragonball-service",
+    "endpoint": "https://dragonball-api.com/api/characters/1"
+  },
+  {
+    "service": "rick-morty-service",
+    "endpoint": "https://rickandmortyapi.com/api/character/1"
+  }
+]
