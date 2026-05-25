@@ -1,11 +1,9 @@
-FROM python:3.14.4-alpine
+FROM public.ecr.aws/lambda/python:3.14
 
-WORKDIR /usr/src/app/
-
-COPY ./src/requirements.txt .
+COPY ./src/requirements.txt ${LAMBDA_TASK_ROOT}
 
 RUN pip install -r requirements.txt
 
-COPY ./src/* .
+COPY ./src/* ${LAMBDA_TASK_ROOT}
 
-CMD ["python", "main.py"]
+CMD [ "main.lambda_handler" ]

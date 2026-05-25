@@ -156,6 +156,3 @@ async def webhook_send(message: str, client: httpx.AsyncClient):
 
 def lambda_handler(event, context):
     return asyncio.run(main())
-
-
-lambda_handler(None, None)
