@@ -35,7 +35,20 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
           ENVIR: ${{ github.ref_name == 'main' && 'prod' || 'staging' }}
         run: |
-          docker build -t $REGISTRY/$REPOSITORY:$ENVIR-latest .
-          docker push $REGISTRY/$REPOSITORY:$ENVIR-latest
-          docker tag $REGISTRY/$REPOSITORY:$ENVIR-latest $REGISTRY/$REPOSITORY:$ENVIR-$IMAGE_TAG
+          docker build -t $REGISTRY/$REPOSITORY:$ENVIR-$IMAGE_TAG .
           docker push $REGISTRY/$REPOSITORY:$ENVIR-$IMAGE_TAG
+
+      - name: Update Lambda function
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REPOSITORY: ${{ github.event.repository.name }}
+          IMAGE_TAG: ${{ github.sha }}
+          ENVIR: ${{ github.ref_name == 'main' && 'prod' || 'staging' }}
+        run: |
+          FUNCTION_NAME="$REPOSITORY-$ENVIR"
+          aws lambda update-function-code \
+            --function-name "$FUNCTION_NAME" \
+            --image-uri "$REGISTRY/$REPOSITORY:$ENVIR-$IMAGE_TAG" \
+            --publish
+          aws lambda wait function-updated \
+            --function-name "$FUNCTION_NAME"
