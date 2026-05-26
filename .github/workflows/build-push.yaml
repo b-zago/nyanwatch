@@ -10,5 +10,5 @@ permissions:
 
 jobs:
   build-push:
-    uses: b-zago/actions/.github/workflows/build-push-ecr.yaml@v1
+    uses: b-zago/actions/.github/workflows/build-push-ecr-lambda.yaml@v1
     secrets: inherit
