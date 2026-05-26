@@ -4,53 +4,11 @@ on:
   push:
     branches: [main, staging]
 
-env:
-  REGION: eu-central-1
-
 permissions:
   id-token: write
   contents: read
 
 jobs:
   build-push:
-    runs-on: ubuntu-24.04-arm
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ secrets.AWS_ROLE }}
-          aws-region: ${{ env.REGION }}
-
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2
-
-      - name: Build and push
-        env:
-          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          REPOSITORY: ${{ github.event.repository.name }}
-          IMAGE_TAG: ${{ github.sha }}
-          ENVIR: ${{ github.ref_name == 'main' && 'prod' || 'staging' }}
-        run: |
-          docker build -t $REGISTRY/$REPOSITORY:$ENVIR-$IMAGE_TAG .
-          docker push $REGISTRY/$REPOSITORY:$ENVIR-$IMAGE_TAG
-
-      - name: Update Lambda function
-        env:
-          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          REPOSITORY: ${{ github.event.repository.name }}
-          IMAGE_TAG: ${{ github.sha }}
-          ENVIR: ${{ github.ref_name == 'main' && 'prod' || 'staging' }}
-        run: |
-          FUNCTION_NAME="$REPOSITORY-$ENVIR"
-          aws lambda update-function-code \
-            --function-name "$FUNCTION_NAME" \
-            --image-uri "$REGISTRY/$REPOSITORY:$ENVIR-$IMAGE_TAG" \
-            --publish \
-            --query 'LastUpdateStatus' \
-            --output text
-          aws lambda wait function-updated \
-            --function-name "$FUNCTION_NAME"
+    uses: b-zago/actions/.github/workflows/build-push-ecr.yaml@v1
+    secrets: inherit
